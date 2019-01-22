@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<items>
+  <item type='settings' position='label-left' labelWidth='120' inputWidth='150'/>
+  <item type='fieldset' name='fieldsetParent' label='Thông tin Menu' inputWidth='610'>
+    <item type='hidden' name='ID_SYS_Menu' disabled='True'/>
+    <item type='hidden' name='hdTypeControl_ID_SYS_Menu' value='key'/>
+    <item type='block' inputWidth='750' blockOffset='0' >
+      <item type='input' name='MenuName' label='Tên menu' required='True' validate='' maxLength='100' numberFormat='' inputWidth='150'/>
+      <item type='newcolumn' offset='20'/>
+      <item type='input' name='ControllerName' label='Tên controller' required='True' validate='' maxLength='100' numberFormat='' inputWidth='150'/>
+    </item>
+    <item type='block' inputWidth='750' blockOffset='0' >
+      <item type='input' name='ActionMethod' label='Tên Action' required='True' validate='' maxLength='100' numberFormat='' inputWidth='150'/>
+      <item type='newcolumn' offset='20'/>
+      <item type='calendar' name='CreateDate' label='Ngày tạo' required='False' dateFormat='%d/%m/%Y' serverDateFormat='%d/%m/%Y' calendarPosition='bottom' inputWidth='150'/>
+    </item>
+    <item type='block' inputWidth='750' blockOffset='0' >
+      <item type='input' name='CreateBy' label='Người tạo' required='False' validate='' maxLength='' numberFormat='' inputWidth='150'/>
+      <item type='newcolumn' offset='20'/>
+      <item type='checkbox' name='IsCache' label='Dùng cache không?' required='False' checked='false'/>
+    </item>
+    <item type='container' name='ID_SYS_Menu_Parent' label='Menu cha' inputWidth='450' inputHeight='200'></item>
+    <item type='hidden' name='hdApiName_ID_SYS_Menu_Parent' value='WS_SYS_Menu/GetAllParent'/>
+    <item type='hidden' name='hdDisplayText_ID_SYS_Menu_Parent' value='MenuName'/>
+    <item type='hidden' name='hdValueText_ID_SYS_Menu_Parent' value='ID_SYS_Menu'/>
+    <item type='hidden' name='hdValueChild_ID_SYS_Menu_Parent' value='SYS_Menu1'/>
+    <item type='hidden' name='hdValue_ID_SYS_Menu_Parent'/>
+    <item type='hidden' name='hdTypeControl_ID_SYS_Menu_Parent' value='tree'/>
+    <item type='block' inputWidth='750' blockOffset='0' >
+      <item type='input' name='Status' label='Trạng thái' required='True' validate='' maxLength='1' numberFormat='' inputWidth='150'/>
+      <item type='newcolumn' offset='20'/>
+      <item type='input' name='OrderBy' label='Sắp xếp' required='True' validate='' maxLength='10' numberFormat='' inputWidth='150'/>
+    </item>
+  </item>
+</items>

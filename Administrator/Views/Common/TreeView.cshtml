@@ -1,0 +1,31 @@
+﻿@using Newtonsoft.Json.Linq;
+@{
+    IEnumerable<JObject> list = (IEnumerable<JObject>)ViewBag.TreeData;
+}
+<div id="treebox" setImagePath="~/Scripts/dhtmlxSuite/skins/skyblue/imgs/dhxtree_skyblue/" class="dhtmlxTree" style="width:250px; height:575px;">
+    <xmp container="true">
+        @foreach (var item in list)
+        {
+            <item text="@item[ViewBag.TreeText]" open="1" id="@item[ViewBag.TreeId]">
+                @getChildMenu((JArray)item[ViewBag.TreeChild]);
+            </item>
+        }
+    </xmp>
+</div>
+@helper getChildMenu(JArray Parrent)
+{
+    foreach (var itemChild in Parrent)
+    {
+        <item text="@itemChild[ViewBag.TreeText]" open="1" id="@itemChild[ViewBag.TreeId]">
+            @getChildMenu((JArray)itemChild[ViewBag.TreeChild]);
+        </item>
+    }
+}
+<script language="javascript">
+    var myTree = dhtmlXTreeFromHTML("treebox");
+    myTree.enableCheckBoxes(1);
+    myTree.attachEvent("onClick", function (id) {
+        doTreeClick(id);
+        return true;
+    });
+</script>

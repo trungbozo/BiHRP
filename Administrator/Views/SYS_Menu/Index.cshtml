@@ -1,0 +1,61 @@
+﻿@using Newtonsoft.Json.Linq;
+@{
+    IEnumerable<JObject> list = (IEnumerable<JObject>)ViewBag.GridData;
+    IEnumerable<JObject> configs = (IEnumerable<JObject>)ViewBag.GridConfig;
+}
+<table class="dhtmlxGrid" gridHeight="auto" id="gridbox" imgpath="~/Scripts/dhtmlxSuite/skins/skyblue/imgs/dhxgrid_skyblue/" style="width:100%" lightnavigation="true">
+    <tr>
+        @foreach (var config in configs)
+        {
+            <td type="@config["TypeColumn"].ToString()" width="@config["WidthColumn"].ToString()" align="@config["AlignHeader"].ToString()" style="text-align:center;">
+                @config["NameColumn"].ToString()
+            </td>
+        }
+        <td width="100px"></td>
+    </tr>
+    @foreach (var item in list)
+    {
+        <tr>
+            @foreach (var config in configs)
+            {
+                <td align="@config["AlignColumn"].ToString()" style="border-color:darkgrey;">
+                    @item[config["MemberColumn"].ToString()].ToString().Trim()
+                </td>
+            }
+                <td align="center" style="border-color:darkgrey;">
+                    <table>
+                        <tr>
+                            <td style="border:none">
+                                <a href="#" onclick="doAdd()">
+                                    <img width="20" height="20" src="~/Scripts/dhtmlxSuite/skins/skyblue/imgs/new.gif" />
+                                </a>
+                            </td>
+                            <td style="border:none">
+                                <a href="http://localhost:8888/SYS_Menu/Details?id=@item["ID_SYS_Menu"]">
+                                    <img width="20" height="20" src="~/Scripts/dhtmlxSuite/skins/skyblue/imgs/edit.gif" />
+                                </a>
+                            </td>
+                            <td style="border:none">
+                                <a href="http://www.randomhouse.com/features/grisham/">
+                                    <img width="20" height="20" src="~/Scripts/dhtmlxSuite/skins/skyblue/imgs/delete.gif" />
+                                </a>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+        </tr>
+    }
+</table>
+<script language="javascript">
+    var myGrid = dhtmlXGridFromTable("gridbox");
+    myGrid.setEditable(false);
+    function doAdd() {
+        alert("Them");
+    }
+    function doEdit(id) {
+        alert("Sua: " + id);
+    }
+    function doDelete() {
+        alert("Xoa");
+    }
+</script>

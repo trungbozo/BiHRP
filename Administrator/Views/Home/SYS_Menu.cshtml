@@ -1,0 +1,53 @@
+﻿@using Newtonsoft.Json.Linq;
+@{ 
+    var list = (IEnumerable<JObject>)ViewBag.SYS_Menu;
+}
+<div>
+    <div>
+        <ul class="site-menu" data-plugin="menu">
+            @foreach (var item in list)
+            {
+                <li class="site-menu-item has-sub">
+                    <a href="javascript:void(0)">
+                        <i class="site-menu-icon wb-dashboard" aria-hidden="true"></i>
+                        <span class="site-menu-title">@item["MenuName"]</span>
+                        <div class="site-menu-badge">
+                            <span class="badge badge-pill badge-success">@(((JArray)item["SYS_Menu1"]).Count())</span>
+                        </div>
+                    </a>
+                    <ul class="site-menu-sub">
+                        @getChildMenu((JArray)item["SYS_Menu1"])
+                    </ul>
+                </li>
+            }
+        </ul>
+    </div>
+</div>
+@helper getChildMenu(JArray Parrent)
+{
+    foreach (var item in Parrent)
+    {
+        if (((JArray)item["SYS_Menu1"]).Count() > 0)
+        {
+            <li class="site-menu-item has-sub">
+                <a href="javascript:void(0)">
+                    <span class="site-menu-title">@item["MenuName"]</span>
+                    <div class="site-menu-badge">
+                        <span class="badge badge-pill badge-success">@(((JArray)item["SYS_Menu1"]).Count())</span>
+                    </div>
+                </a>
+                <ul class="site-menu-sub">
+                    @getChildMenu((JArray)item["SYS_Menu1"])
+                </ul>
+            </li>
+        }
+        else
+        {
+            <li class="site-menu-item">
+                <a class="animsition-link" href="#" onclick="menuClick('@item["ControllerName"]/@item["ActionMethod"]?idForm=@item["ID_SYS_Menu"]')">
+                    <span class="site-menu-title">@item["MenuName"]</span>
+                </a>
+            </li>
+        }
+    }
+}

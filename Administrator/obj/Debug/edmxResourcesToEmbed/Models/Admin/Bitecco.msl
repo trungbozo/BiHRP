@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BiteccoModelStoreContainer" CdmEntityContainer="BiteccoEntities">
+    <EntitySetMapping Name="cities">
+      <EntityTypeMapping TypeName="BiteccoModel.city">
+        <MappingFragment StoreEntitySet="city">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="districts">
+      <EntityTypeMapping TypeName="BiteccoModel.district">
+        <MappingFragment StoreEntitySet="district">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id_city" ColumnName="id_city" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_Control">
+      <EntityTypeMapping TypeName="BiteccoModel.SYS_Control">
+        <MappingFragment StoreEntitySet="SYS_Control">
+          <ScalarProperty Name="ID_Control" ColumnName="ID_Control" />
+          <ScalarProperty Name="ID_Form" ColumnName="ID_Form" />
+          <ScalarProperty Name="LabelControl" ColumnName="LabelControl" />
+          <ScalarProperty Name="NameControl" ColumnName="NameControl" />
+          <ScalarProperty Name="TypeControl" ColumnName="TypeControl" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_Grid">
+      <EntityTypeMapping TypeName="BiteccoModel.SYS_Grid">
+        <MappingFragment StoreEntitySet="SYS_Grid">
+          <ScalarProperty Name="ID_Grid" ColumnName="ID_Grid" />
+          <ScalarProperty Name="ID_Form" ColumnName="ID_Form" />
+          <ScalarProperty Name="NameColumn" ColumnName="NameColumn" />
+          <ScalarProperty Name="MemberColumn" ColumnName="MemberColumn" />
+          <ScalarProperty Name="TypeColumn" ColumnName="TypeColumn" />
+          <ScalarProperty Name="WidthColumn" ColumnName="WidthColumn" />
+          <ScalarProperty Name="AlignHeader" ColumnName="AlignHeader" />
+          <ScalarProperty Name="AlignColumn" ColumnName="AlignColumn" />
+          <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_Menu">
+      <EntityTypeMapping TypeName="BiteccoModel.SYS_Menu">
+        <MappingFragment StoreEntitySet="SYS_Menu">
+          <ScalarProperty Name="ID_SYS_Menu" ColumnName="ID_SYS_Menu" />
+          <ScalarProperty Name="ControllerName" ColumnName="ControllerName" />
+          <ScalarProperty Name="ActionMethod" ColumnName="ActionMethod" />
+          <ScalarProperty Name="MenuName" ColumnName="MenuName" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+          <ScalarProperty Name="IsCache" ColumnName="IsCache" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="ID_SYS_Menu_Parent" ColumnName="ID_SYS_Menu_Parent" />
+          <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_SubMenu">
+      <EntityTypeMapping TypeName="BiteccoModel.SYS_SubMenu">
+        <MappingFragment StoreEntitySet="SYS_SubMenu">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="ID_SYS_Menu" ColumnName="ID_SYS_Menu" />
+          <ScalarProperty Name="ControllerName" ColumnName="ControllerName" />
+          <ScalarProperty Name="ActionMethod" ColumnName="ActionMethod" />
+          <ScalarProperty Name="SubMenuName" ColumnName="SubMenuName" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_Tree">
+      <EntityTypeMapping TypeName="BiteccoModel.SYS_Tree">
+        <MappingFragment StoreEntitySet="SYS_Tree">
+          <ScalarProperty Name="ID_Tree" ColumnName="ID_Tree" />
+          <ScalarProperty Name="ID_Form" ColumnName="ID_Form" />
+          <ScalarProperty Name="NameTree" ColumnName="NameTree" />
+          <ScalarProperty Name="TextValue" ColumnName="TextValue" />
+          <ScalarProperty Name="IdValue" ColumnName="IdValue" />
+          <ScalarProperty Name="ChildValue" ColumnName="ChildValue" />
+          <ScalarProperty Name="ApiName" ColumnName="ApiName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="BiteccoModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="BiteccoModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="BiteccoModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="BiteccoModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="BiteccoModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BiteccoModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="BiteccoModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BiteccoModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="BiteccoModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="BiteccoModel.Store.sp_upgraddiagrams" />
+  </EntityContainerMapping>
+</Mapping>

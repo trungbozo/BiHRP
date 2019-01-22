@@ -1,0 +1,221 @@
+﻿@using Newtonsoft.Json.Linq;
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutPartical.cshtml";
+    int idForm = ViewBag.idForm;
+    string titleForm = ViewBag.titleForm.ToString();
+    string helpForm = ViewBag.helpForm.ToString();
+    string ApiData = ViewBag.ApiData.ToString();
+    string ApiListData = ViewBag.ApiListData.ToString();
+}
+<script src="~/Scripts/jquery.js"></script>
+<script src="~/Scripts/formCommon.js"></script>
+<script language="javascript">
+    /////////////-------Lấy thông tin cấu hình cho trang-------/////////////
+    var idForm = @idForm; //-----Id của form để lấy các Control, Toolbar
+    var titleForm = "@titleForm"; //------Tiêu đề của form
+    var helpForm = "@helpForm"; //------Đường dẫn file hướng dẫn sử dụng
+    var apiData = "@ApiData".replace(/&amp;/g, "&");//------API lấy dữ liệu cần quản lý để bind lên Form
+    var apiListData = "@ApiListData".replace(/&amp;/g, "&");//------API lấy danh sách dữ liệu cần quản lý
+    var dateFormatServer = "@Session["DateFormatServer"]";//------Lấy định dạng ngày từ file cấu hình server
+    ///////------------ Lấy thông báo theo ngôn ngữ
+    var message_deleted = "@Session["message.deleted"]";
+    var message_acceptdelete = "@Session["message.acceptdelete"]";
+    var message_delete = "@Session["message.delete"]";
+    var message_updated = "@Session["message.updated"]";
+    var message_acceptupdate = "@Session["message.acceptupdate"]";
+    var message_checkupdate = "@Session["message.checkupdate"]";
+    var message_detail = "@Session["message.detail"]";
+    var message_added = "@Session["message.added"]";
+    var message_checkadd = "@Session["message.checkadd"]";
+    var title_delete = "@Session["title.delete"]";//--------Tiêu đề thông báo xóa
+    var title_update = "@Session["title.update"]";//--------Tiêu đề thông báo sửa
+    var title_add = "@Session["title.add"]";//--------Tiêu đề thông báo thêm mới
+    var title_detail = "@Session["title.detail"]";//--------Tiêu đề thông báo thêm mới
+    var title_help = "@Session["title.help"]";//--------Tiêu đề thông báo trang trợ giúp
+    /////////////-------Hết phần lấy thông tin cấu hình cho trang-------/////////////
+    const myFormTree = new Map(); //-----Lưu các Treeview
+    doLoad()
+    function doLoad() {
+        doLoadPage();
+        myTree = myWindows.window(idForm).attachTree();
+        var myToolbar = myWindows.window(idForm).attachToolbar();
+        doLoadToolbar(myToolbar,idForm, 0);
+        doLoadTree();
+    }
+    function doDelete() {
+        var id = myTree.getSelected();
+        if (id === "") {
+            return dhtmlx.alert({
+                title: title_delete,
+                type: "alert-error",
+                text: message_delete
+            });
+        }
+        dhtmlx.confirm({
+            title: title_delete,
+            text: message_acceptdelete,
+            type: "confirm-warning",
+            callback: function (result) {
+                if (result) {
+                    myWindows.window(idForm).progressOn();
+                    $.ajax({
+                        type: 'POST',
+                        url: '../SYS_Menu/Delete?id=' + id,
+                        dataType: 'text',
+                        contentType: "text/plain",
+                        success: function (responseData) {
+                            if (responseData === "Ok") {
+                                doLoadMessage("", message_deleted);
+                            } else {
+                                alert(responseData);
+                            }
+                            doLoadTree();
+                            myWindows.window(idForm).progressOff();
+                            myWindows.window("edit").close();
+                        },
+                        error: function (request, status, error) {
+                            doLoadMessage("error", error);
+                        }
+                    });
+                }
+            }
+        });
+    }
+    function doSaveNew() {
+        if (!myForm.validate()) {
+            return dhtmlx.alert({
+                title: title_add,
+                type: "alert",
+                text: message_checkadd
+            });
+        } else {
+            myWindows.window("new").progressOn();
+            var object = new Object();
+            myForm.forEachItem(function (name) {
+                switch (myForm.getItemType(name)) {
+                    case "fieldset":
+                        break;
+                    case "container":
+                        switch (myForm.getItemValue("hdTypeControl_" + name)) {
+                            case "tree":
+                                object[name] = myForm.getItemValue("hdValue_" + name);
+                                break;
+                        }
+                        break;
+                    case "calendar":
+                        object[name] = myForm.getCalendar(name).getFormatedDate(dateFormatServer);
+                        break;
+                    default:
+                        object[name] = myForm.getItemValue(name);
+                        break;
+                }
+            });
+            $.ajax({
+                type: 'POST',
+                url: '../SYS_Menu/Create?collection=' + JSON.stringify(object),
+                dataType: 'text',
+                contentType: "text/plain",
+                success: function (responseData) {
+                    if (responseData === "Ok") {
+                        doLoadMessage("", message_added);
+                    } else {
+                        doLoadMessage("error", responseData);
+                    }
+                    doLoadTree();
+                    myWindows.window("new").progressOff();
+                    myWindows.window("new").close();
+                },
+                error: function (request, status, error) {
+                    doLoadMessage("error", error);
+                    myWindows.window("new").progressOff();
+                }
+            });
+        }
+    }
+    function doSaveEdit() {
+        if (!myForm.validate()) {
+            return dhtmlx.alert({
+                title: title_update,
+                type: "alert",
+                text: message_checkupdate
+            });
+        } else {
+            var object = new Object();
+            var idItemEdit = "";
+            myForm.forEachItem(function (name) {
+                switch (myForm.getItemType(name)) {
+                    case "fieldset":
+                        break;
+                    case "hidden":
+                        if (myForm.getItemValue("hdTypeControl_" + name) === "key") {
+                            idItemEdit = myForm.getItemValue(name);
+                        }
+                        object[name] = myForm.getItemValue(name);
+                        break;
+                    case "container":
+                        switch (myForm.getItemValue("hdTypeControl_" + name)) {
+                            case "tree":
+                                object[name] = myForm.getItemValue("hdValue_" + name);
+                                break;
+                        }
+                        break;
+                    case "calendar":
+                        object[name] = myForm.getCalendar(name).getFormatedDate(dateFormatServer);
+                        break;
+                    default:
+                        object[name] = myForm.getItemValue(name);
+                        break;
+                }
+            });
+            if (idItemEdit === "") {
+                return dhtmlx.alert({
+                    title: title_update,
+                    type: "alert-error",
+                    text: "message_detail"
+                });
+            }
+            dhtmlx.confirm({
+                title: title_update,
+                text: message_acceptupdate,
+                type: "confirm",
+                callback: function (result) {
+                    if (result) {
+                        myWindows.window("edit").progressOn();
+                        $.ajax({
+                            type: 'POST',
+                            url: '../SYS_Menu/Edit?id=' + idItemEdit + '&collection=' + JSON.stringify(object),
+                            dataType: 'text',
+                            contentType: "text/plain",
+                            success: function (responseData) {
+                                if (responseData === "Ok") {
+                                    doLoadMessage("", message_updated);
+                                } else {
+                                    doLoadMessage("", responseData);
+                                }
+                                doLoadTree();
+                                myWindows.window("edit").progressOff();
+                                myWindows.window("edit").close();
+                            },
+                            error: function (request, status, error) {
+                                doLoadMessage("error", error);
+                                myWindows.window("edit").progressOff();
+                            }
+                        });
+                    }
+                }
+            });
+        }
+    }
+    function doPrint(file_name, model) {
+        myWindows.window(idForm).progressOn();
+        window.location.assign('../Common/DownloadFile?file_name=' + file_name + '&idForm=' + idForm + '&model=' + model);
+        setTimeout(function () {
+            myWindows.window(idForm).progressOff();
+        }, 1000);
+    }
+</script>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

@@ -1,0 +1,11 @@
+<toolbar>
+  <item id='1' type='button' img='new.gif' imgdis='new_dis.gif' text='Thêm' action=''></item>
+  <item id='2' type='button' img='edit.gif' imgdis='edit_dis.gif' text='Sửa' action=''></item>
+  <item type='separator'	id='6'/>
+  <item id='7' type='button' img='save.gif' imgdis='save_dis.gif' text='Lưu' action='' enabled='false'></item>
+  <item id='8' type='button' img='cancel.gif' imgdis='cancel_dis.gif' text='Hủy' action='' enabled='false'></item>
+  <item type='separator'	id='9'/>
+  <item id='10' type='button' img='delete.gif' imgdis='delete_dis.gif' text='Xóa' action=''></item>
+  <item type='separator'	id='12'/>
+  <item id='11' type='button' img='print.gif' imgdis='print_dis.gif' text='In' action=''></item>
+</toolbar>

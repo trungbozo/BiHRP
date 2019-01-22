@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<en>
+  <message>
+    <deleted>Delete data successful</deleted>
+    <acceptdelete>Are you sure delete data selected?</acceptdelete>
+    <delete>You must select data to delete!</delete>
+    <updated>Update data successful</updated>
+    <acceptupdate>Are you sure save data updated?</acceptupdate>
+    <checkupdate>The input is not correct. Please check back!</checkupdate>
+    <detail>You must select data to view detail!</detail>
+    <added>Add new data successful</added>
+    <checkadd>The input is not correct. Please check back!</checkadd>
+  </message>
+  <title>
+    <delete>Delete data</delete>
+    <update>Update data</update>
+    <add>Add new data</add>
+    <detail>View detail data</detail>
+    <help>Instructions for using functions</help>
+  </title>
+</en>

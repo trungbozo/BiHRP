@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BiteccoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="SYS_Control">
+    <Key>
+      <PropertyRef Name="ID_SYS_Control" />
+    </Key>
+    <Property Name="ID_SYS_Control" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_Form" Type="int" Nullable="false" />
+    <Property Name="LabelControl" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="NameControl" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="TypeControl" Type="nvarchar" MaxLength="250" />
+    <Property Name="Status" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="OrderBy" Type="nchar" MaxLength="10" />
+    <Property Name="ID_SYS_Control_Parent" Type="int" />
+    <Property Name="WidthControl" Type="int" />
+    <Property Name="ApiName" Type="varchar" MaxLength="100" />
+    <Property Name="DisplayText" Type="nvarchar" MaxLength="500" />
+    <Property Name="ValueText" Type="nvarchar" MaxLength="50" />
+    <Property Name="ValueChild" Type="nvarchar" MaxLength="50" />
+    <Property Name="ValueDisable" Type="bit" />
+    <Property Name="ValueRequired" Type="bit" />
+    <Property Name="ValueValidate" Type="nvarchar" MaxLength="50" />
+    <Property Name="ValueDateFormat" Type="nvarchar" MaxLength="50" />
+    <Property Name="ValueServerDateFormat" Type="nvarchar" MaxLength="50" />
+    <Property Name="ValueNumberFormat" Type="nvarchar" MaxLength="50" />
+    <Property Name="ValueMaxLength" Type="int" />
+    <Property Name="HeightControl" Type="int" />
+    <Property Name="ID_Action" Type="int" />
+    <Property Name="XML_Link" Type="varchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="SYS_Form">
+    <Key>
+      <PropertyRef Name="ID_SYS_Form" />
+    </Key>
+    <Property Name="ID_SYS_Form" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NameForm" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="LabelWidth" Type="int" />
+    <Property Name="InputWidth" Type="int" />
+    <Property Name="ApiNameConfig" Type="varchar" MaxLength="100" />
+    <Property Name="ApiNameControl" Type="varchar" MaxLength="100" />
+    <Property Name="ApiData" Type="varchar" MaxLength="100" />
+    <Property Name="ApiNameToolbar" Type="varchar" MaxLength="100" />
+    <Property Name="ApiListData" Type="varchar" MaxLength="200" />
+    <Property Name="HelpForm" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="SYS_Grid">
+    <Key>
+      <PropertyRef Name="ID_SYS_Grid" />
+    </Key>
+    <Property Name="ID_SYS_Grid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_Form" Type="int" Nullable="false" />
+    <Property Name="NameColumn" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="MemberColumn" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="TypeColumn" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="WidthColumn" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="AlignHeader" Type="varchar" MaxLength="50" />
+    <Property Name="AlignColumn" Type="varchar" MaxLength="50" />
+    <Property Name="OrderBy" Type="nchar" MaxLength="10" />
+    <Property Name="ApiName" Type="nchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="SYS_Menu">
+    <Key>
+      <PropertyRef Name="ID_SYS_Menu" />
+    </Key>
+    <Property Name="ID_SYS_Menu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ControllerName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="ActionMethod" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="MenuName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="CreateBy" Type="bigint" />
+    <Property Name="IsCache" Type="bit" />
+    <Property Name="Status" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="ID_SYS_Menu_Parent" Type="int" />
+    <Property Name="OrderBy" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="SYS_SubMenu">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_SYS_Menu" Type="int" Nullable="false" />
+    <Property Name="ControllerName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="ActionMethod" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="SubMenuName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="CreateBy" Type="int" />
+    <Property Name="Status" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SYS_Toolbar">
+    <Key>
+      <PropertyRef Name="ID_SYS_Toolbar" />
+    </Key>
+    <Property Name="ID_SYS_Toolbar" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ToolbarType" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ToolbarText" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ToolbarImage" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ToolbarDisImage" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ToolbarAction" Type="varchar" MaxLength="50" />
+    <Property Name="ID_Form" Type="int" />
+    <Property Name="ID_SYS_Toolbar_Parent" Type="int" />
+    <Property Name="OrderBy" Type="nchar" MaxLength="10" />
+    <Property Name="ToolbarName" Type="varchar" MaxLength="50" />
+    <Property Name="DisableItem" Type="bit" />
+    <Property Name="EnableItem" Type="bit" />
+    <Property Name="Language" Type="varchar" MaxLength="50" />
+    <Property Name="ID_Action" Type="int" />
+  </EntityType>
+  <EntityType Name="SYS_Tree">
+    <Key>
+      <PropertyRef Name="ID_SYS_Tree" />
+    </Key>
+    <Property Name="ID_SYS_Tree" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_Form" Type="int" Nullable="false" />
+    <Property Name="NameTree" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="TextValue" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IdValue" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ChildValue" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ApiName" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_SYS_Control_SYS_Control">
+    <End Role="SYS_Control" Type="Self.SYS_Control" Multiplicity="0..1" />
+    <End Role="SYS_Control1" Type="Self.SYS_Control" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SYS_Control">
+        <PropertyRef Name="ID_SYS_Control" />
+      </Principal>
+      <Dependent Role="SYS_Control1">
+        <PropertyRef Name="ID_SYS_Control_Parent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SYS_Menu_SYS_Menu">
+    <End Role="SYS_Menu" Type="Self.SYS_Menu" Multiplicity="0..1" />
+    <End Role="SYS_Menu1" Type="Self.SYS_Menu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SYS_Menu">
+        <PropertyRef Name="ID_SYS_Menu" />
+      </Principal>
+      <Dependent Role="SYS_Menu1">
+        <PropertyRef Name="ID_SYS_Menu_Parent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SYS_Toolbar_SYS_Toolbar">
+    <End Role="SYS_Toolbar" Type="Self.SYS_Toolbar" Multiplicity="0..1" />
+    <End Role="SYS_Toolbar1" Type="Self.SYS_Toolbar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SYS_Toolbar">
+        <PropertyRef Name="ID_SYS_Toolbar" />
+      </Principal>
+      <Dependent Role="SYS_Toolbar1">
+        <PropertyRef Name="ID_SYS_Toolbar_Parent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BiteccoModelStoreContainer">
+    <EntitySet Name="SYS_Control" EntityType="Self.SYS_Control" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_Form" EntityType="Self.SYS_Form" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_Grid" EntityType="Self.SYS_Grid" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_Menu" EntityType="Self.SYS_Menu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_SubMenu" EntityType="Self.SYS_SubMenu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_Toolbar" EntityType="Self.SYS_Toolbar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_Tree" EntityType="Self.SYS_Tree" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_SYS_Control_SYS_Control" Association="Self.FK_SYS_Control_SYS_Control">
+      <End Role="SYS_Control" EntitySet="SYS_Control" />
+      <End Role="SYS_Control1" EntitySet="SYS_Control" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SYS_Menu_SYS_Menu" Association="Self.FK_SYS_Menu_SYS_Menu">
+      <End Role="SYS_Menu" EntitySet="SYS_Menu" />
+      <End Role="SYS_Menu1" EntitySet="SYS_Menu" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SYS_Toolbar_SYS_Toolbar" Association="Self.FK_SYS_Toolbar_SYS_Toolbar">
+      <End Role="SYS_Toolbar" EntitySet="SYS_Toolbar" />
+      <End Role="SYS_Toolbar1" EntitySet="SYS_Toolbar" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

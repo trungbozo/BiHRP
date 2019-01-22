@@ -1,0 +1,552 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BiteccoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="SYS_Control">
+          <Key>
+            <PropertyRef Name="ID_SYS_Control" />
+          </Key>
+          <Property Name="ID_SYS_Control" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Form" Type="int" Nullable="false" />
+          <Property Name="LabelControl" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="NameControl" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="TypeControl" Type="nvarchar" MaxLength="250" />
+          <Property Name="Status" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="OrderBy" Type="nchar" MaxLength="10" />
+          <Property Name="ID_SYS_Control_Parent" Type="int" />
+          <Property Name="WidthControl" Type="int" />
+          <Property Name="ApiName" Type="varchar" MaxLength="100" />
+          <Property Name="DisplayText" Type="nvarchar" MaxLength="500" />
+          <Property Name="ValueText" Type="nvarchar" MaxLength="50" />
+          <Property Name="ValueChild" Type="nvarchar" MaxLength="50" />
+          <Property Name="ValueDisable" Type="bit" />
+          <Property Name="ValueRequired" Type="bit" />
+          <Property Name="ValueValidate" Type="nvarchar" MaxLength="50" />
+          <Property Name="ValueDateFormat" Type="nvarchar" MaxLength="50" />
+          <Property Name="ValueServerDateFormat" Type="nvarchar" MaxLength="50" />
+          <Property Name="ValueNumberFormat" Type="nvarchar" MaxLength="50" />
+          <Property Name="ValueMaxLength" Type="int" />
+          <Property Name="HeightControl" Type="int" />
+          <Property Name="ID_Action" Type="int" />
+          <Property Name="XML_Link" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="SYS_Form">
+          <Key>
+            <PropertyRef Name="ID_SYS_Form" />
+          </Key>
+          <Property Name="ID_SYS_Form" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameForm" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="LabelWidth" Type="int" />
+          <Property Name="InputWidth" Type="int" />
+          <Property Name="ApiNameConfig" Type="varchar" MaxLength="100" />
+          <Property Name="ApiNameControl" Type="varchar" MaxLength="100" />
+          <Property Name="ApiData" Type="varchar" MaxLength="100" />
+          <Property Name="ApiNameToolbar" Type="varchar" MaxLength="100" />
+          <Property Name="ApiListData" Type="varchar" MaxLength="200" />
+          <Property Name="HelpForm" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="SYS_Grid">
+          <Key>
+            <PropertyRef Name="ID_SYS_Grid" />
+          </Key>
+          <Property Name="ID_SYS_Grid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Form" Type="int" Nullable="false" />
+          <Property Name="NameColumn" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MemberColumn" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TypeColumn" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="WidthColumn" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="AlignHeader" Type="varchar" MaxLength="50" />
+          <Property Name="AlignColumn" Type="varchar" MaxLength="50" />
+          <Property Name="OrderBy" Type="nchar" MaxLength="10" />
+          <Property Name="ApiName" Type="nchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="SYS_Menu">
+          <Key>
+            <PropertyRef Name="ID_SYS_Menu" />
+          </Key>
+          <Property Name="ID_SYS_Menu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ControllerName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ActionMethod" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="MenuName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="CreateBy" Type="bigint" />
+          <Property Name="IsCache" Type="bit" />
+          <Property Name="Status" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="ID_SYS_Menu_Parent" Type="int" />
+          <Property Name="OrderBy" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="SYS_SubMenu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_SYS_Menu" Type="int" Nullable="false" />
+          <Property Name="ControllerName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ActionMethod" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="SubMenuName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="CreateBy" Type="int" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SYS_Toolbar">
+          <Key>
+            <PropertyRef Name="ID_SYS_Toolbar" />
+          </Key>
+          <Property Name="ID_SYS_Toolbar" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ToolbarType" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ToolbarText" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ToolbarImage" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ToolbarDisImage" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ToolbarAction" Type="varchar" MaxLength="50" />
+          <Property Name="ID_Form" Type="int" />
+          <Property Name="ID_SYS_Toolbar_Parent" Type="int" />
+          <Property Name="OrderBy" Type="nchar" MaxLength="10" />
+          <Property Name="ToolbarName" Type="varchar" MaxLength="50" />
+          <Property Name="DisableItem" Type="bit" />
+          <Property Name="EnableItem" Type="bit" />
+          <Property Name="Language" Type="varchar" MaxLength="50" />
+          <Property Name="ID_Action" Type="int" />
+        </EntityType>
+        <EntityType Name="SYS_Tree">
+          <Key>
+            <PropertyRef Name="ID_SYS_Tree" />
+          </Key>
+          <Property Name="ID_SYS_Tree" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Form" Type="int" Nullable="false" />
+          <Property Name="NameTree" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="TextValue" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdValue" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ChildValue" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ApiName" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_SYS_Control_SYS_Control">
+          <End Role="SYS_Control" Type="Self.SYS_Control" Multiplicity="0..1" />
+          <End Role="SYS_Control1" Type="Self.SYS_Control" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYS_Control">
+              <PropertyRef Name="ID_SYS_Control" />
+            </Principal>
+            <Dependent Role="SYS_Control1">
+              <PropertyRef Name="ID_SYS_Control_Parent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SYS_Menu_SYS_Menu">
+          <End Role="SYS_Menu" Type="Self.SYS_Menu" Multiplicity="0..1" />
+          <End Role="SYS_Menu1" Type="Self.SYS_Menu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYS_Menu">
+              <PropertyRef Name="ID_SYS_Menu" />
+            </Principal>
+            <Dependent Role="SYS_Menu1">
+              <PropertyRef Name="ID_SYS_Menu_Parent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SYS_Toolbar_SYS_Toolbar">
+          <End Role="SYS_Toolbar" Type="Self.SYS_Toolbar" Multiplicity="0..1" />
+          <End Role="SYS_Toolbar1" Type="Self.SYS_Toolbar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYS_Toolbar">
+              <PropertyRef Name="ID_SYS_Toolbar" />
+            </Principal>
+            <Dependent Role="SYS_Toolbar1">
+              <PropertyRef Name="ID_SYS_Toolbar_Parent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BiteccoModelStoreContainer">
+          <EntitySet Name="SYS_Control" EntityType="Self.SYS_Control" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYS_Form" EntityType="Self.SYS_Form" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYS_Grid" EntityType="Self.SYS_Grid" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYS_Menu" EntityType="Self.SYS_Menu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYS_SubMenu" EntityType="Self.SYS_SubMenu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYS_Toolbar" EntityType="Self.SYS_Toolbar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYS_Tree" EntityType="Self.SYS_Tree" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_SYS_Control_SYS_Control" Association="Self.FK_SYS_Control_SYS_Control">
+            <End Role="SYS_Control" EntitySet="SYS_Control" />
+            <End Role="SYS_Control1" EntitySet="SYS_Control" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SYS_Menu_SYS_Menu" Association="Self.FK_SYS_Menu_SYS_Menu">
+            <End Role="SYS_Menu" EntitySet="SYS_Menu" />
+            <End Role="SYS_Menu1" EntitySet="SYS_Menu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SYS_Toolbar_SYS_Toolbar" Association="Self.FK_SYS_Toolbar_SYS_Toolbar">
+            <End Role="SYS_Toolbar" EntitySet="SYS_Toolbar" />
+            <End Role="SYS_Toolbar1" EntitySet="SYS_Toolbar" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BiteccoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="SYS_Control">
+          <Key>
+            <PropertyRef Name="ID_SYS_Control" />
+          </Key>
+          <Property Name="ID_SYS_Control" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Form" Type="Int32" Nullable="false" />
+          <Property Name="LabelControl" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NameControl" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TypeControl" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="OrderBy" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ID_SYS_Control_Parent" Type="Int32" />
+          <Property Name="WidthControl" Type="Int32" />
+          <Property Name="ApiName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DisplayText" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ValueText" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ValueChild" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ValueDisable" Type="Boolean" />
+          <Property Name="ValueRequired" Type="Boolean" />
+          <Property Name="ValueValidate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ValueDateFormat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ValueServerDateFormat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ValueNumberFormat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ValueMaxLength" Type="Int32" />
+          <Property Name="HeightControl" Type="Int32" />
+          <NavigationProperty Name="SYS_Control1" Relationship="Self.FK_SYS_Control_SYS_Control" FromRole="SYS_Control" ToRole="SYS_Control1" />
+          <NavigationProperty Name="SYS_Control2" Relationship="Self.FK_SYS_Control_SYS_Control" FromRole="SYS_Control1" ToRole="SYS_Control" />
+          <Property Name="ID_Action" Type="Int32" />
+          <Property Name="XML_Link" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="SYS_Grid">
+          <Key>
+            <PropertyRef Name="ID_SYS_Grid" />
+          </Key>
+          <Property Name="ID_SYS_Grid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Form" Type="Int32" Nullable="false" />
+          <Property Name="NameColumn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MemberColumn" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TypeColumn" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="WidthColumn" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AlignHeader" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AlignColumn" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OrderBy" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ApiName" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SYS_Menu">
+          <Key>
+            <PropertyRef Name="ID_SYS_Menu" />
+          </Key>
+          <Property Name="ID_SYS_Menu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ControllerName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ActionMethod" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MenuName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="CreateBy" Type="Int64" />
+          <Property Name="IsCache" Type="Boolean" />
+          <Property Name="Status" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="ID_SYS_Menu_Parent" Type="Int32" />
+          <Property Name="OrderBy" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SYS_Menu1" Relationship="Self.FK_SYS_Menu_SYS_Menu" FromRole="SYS_Menu" ToRole="SYS_Menu1" />
+          <NavigationProperty Name="SYS_Menu2" Relationship="Self.FK_SYS_Menu_SYS_Menu" FromRole="SYS_Menu1" ToRole="SYS_Menu" />
+        </EntityType>
+        <EntityType Name="SYS_SubMenu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_SYS_Menu" Type="Int32" Nullable="false" />
+          <Property Name="ControllerName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ActionMethod" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SubMenuName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="CreateBy" Type="Int32" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SYS_Toolbar">
+          <Key>
+            <PropertyRef Name="ID_SYS_Toolbar" />
+          </Key>
+          <Property Name="ID_SYS_Toolbar" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ToolbarType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ToolbarText" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ToolbarImage" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ToolbarDisImage" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ToolbarAction" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ID_Form" Type="Int32" />
+          <Property Name="ID_SYS_Toolbar_Parent" Type="Int32" />
+          <Property Name="OrderBy" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="SYS_Toolbar1" Relationship="Self.FK_SYS_Toolbar_SYS_Toolbar" FromRole="SYS_Toolbar" ToRole="SYS_Toolbar1" />
+          <NavigationProperty Name="SYS_Toolbar2" Relationship="Self.FK_SYS_Toolbar_SYS_Toolbar" FromRole="SYS_Toolbar1" ToRole="SYS_Toolbar" />
+          <Property Name="ToolbarName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DisableItem" Type="Boolean" />
+          <Property Name="EnableItem" Type="Boolean" />
+          <Property Name="Language" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ID_Action" Type="Int32" />
+        </EntityType>
+        <EntityType Name="SYS_Tree">
+          <Key>
+            <PropertyRef Name="ID_SYS_Tree" />
+          </Key>
+          <Property Name="ID_SYS_Tree" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Form" Type="Int32" Nullable="false" />
+          <Property Name="NameTree" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TextValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ChildValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ApiName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_SYS_Control_SYS_Control">
+          <End Role="SYS_Control" Type="Self.SYS_Control" Multiplicity="0..1" />
+          <End Role="SYS_Control1" Type="Self.SYS_Control" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYS_Control">
+              <PropertyRef Name="ID_SYS_Control" />
+            </Principal>
+            <Dependent Role="SYS_Control1">
+              <PropertyRef Name="ID_SYS_Control_Parent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SYS_Menu_SYS_Menu">
+          <End Role="SYS_Menu" Type="Self.SYS_Menu" Multiplicity="0..1" />
+          <End Role="SYS_Menu1" Type="Self.SYS_Menu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYS_Menu">
+              <PropertyRef Name="ID_SYS_Menu" />
+            </Principal>
+            <Dependent Role="SYS_Menu1">
+              <PropertyRef Name="ID_SYS_Menu_Parent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SYS_Toolbar_SYS_Toolbar">
+          <End Role="SYS_Toolbar" Type="Self.SYS_Toolbar" Multiplicity="0..1" />
+          <End Role="SYS_Toolbar1" Type="Self.SYS_Toolbar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYS_Toolbar">
+              <PropertyRef Name="ID_SYS_Toolbar" />
+            </Principal>
+            <Dependent Role="SYS_Toolbar1">
+              <PropertyRef Name="ID_SYS_Toolbar_Parent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BiteccoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="SYS_Control" EntityType="Self.SYS_Control" />
+          <EntitySet Name="SYS_Grid" EntityType="Self.SYS_Grid" />
+          <EntitySet Name="SYS_Menu" EntityType="Self.SYS_Menu" />
+          <EntitySet Name="SYS_SubMenu" EntityType="Self.SYS_SubMenu" />
+          <EntitySet Name="SYS_Toolbar" EntityType="Self.SYS_Toolbar" />
+          <EntitySet Name="SYS_Tree" EntityType="Self.SYS_Tree" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <AssociationSet Name="FK_SYS_Control_SYS_Control" Association="Self.FK_SYS_Control_SYS_Control">
+            <End Role="SYS_Control" EntitySet="SYS_Control" />
+            <End Role="SYS_Control1" EntitySet="SYS_Control" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SYS_Menu_SYS_Menu" Association="Self.FK_SYS_Menu_SYS_Menu">
+            <End Role="SYS_Menu" EntitySet="SYS_Menu" />
+            <End Role="SYS_Menu1" EntitySet="SYS_Menu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SYS_Toolbar_SYS_Toolbar" Association="Self.FK_SYS_Toolbar_SYS_Toolbar">
+            <End Role="SYS_Toolbar" EntitySet="SYS_Toolbar" />
+            <End Role="SYS_Toolbar1" EntitySet="SYS_Toolbar" />
+          </AssociationSet>
+          <EntitySet Name="SYS_Form" EntityType="BiteccoModel.SYS_Form" />
+        </EntityContainer>
+        <EntityType Name="SYS_Form">
+          <Key>
+            <PropertyRef Name="ID_SYS_Form" />
+          </Key>
+          <Property Name="ID_SYS_Form" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameForm" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LabelWidth" Type="Int32" />
+          <Property Name="InputWidth" Type="Int32" />
+          <Property Name="ApiNameConfig" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ApiNameControl" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ApiData" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ApiNameToolbar" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ApiListData" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="HelpForm" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BiteccoModelStoreContainer" CdmEntityContainer="BiteccoEntities">
+          <EntitySetMapping Name="SYS_Control">
+            <EntityTypeMapping TypeName="BiteccoModel.SYS_Control">
+              <MappingFragment StoreEntitySet="SYS_Control">
+                <ScalarProperty Name="XML_Link" ColumnName="XML_Link" />
+                <ScalarProperty Name="ID_Action" ColumnName="ID_Action" />
+                <ScalarProperty Name="ID_SYS_Control" ColumnName="ID_SYS_Control" />
+                <ScalarProperty Name="ID_Form" ColumnName="ID_Form" />
+                <ScalarProperty Name="LabelControl" ColumnName="LabelControl" />
+                <ScalarProperty Name="NameControl" ColumnName="NameControl" />
+                <ScalarProperty Name="TypeControl" ColumnName="TypeControl" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+                <ScalarProperty Name="ID_SYS_Control_Parent" ColumnName="ID_SYS_Control_Parent" />
+                <ScalarProperty Name="WidthControl" ColumnName="WidthControl" />
+                <ScalarProperty Name="ApiName" ColumnName="ApiName" />
+                <ScalarProperty Name="DisplayText" ColumnName="DisplayText" />
+                <ScalarProperty Name="ValueText" ColumnName="ValueText" />
+                <ScalarProperty Name="ValueChild" ColumnName="ValueChild" />
+                <ScalarProperty Name="ValueDisable" ColumnName="ValueDisable" />
+                <ScalarProperty Name="ValueRequired" ColumnName="ValueRequired" />
+                <ScalarProperty Name="ValueValidate" ColumnName="ValueValidate" />
+                <ScalarProperty Name="ValueDateFormat" ColumnName="ValueDateFormat" />
+                <ScalarProperty Name="ValueServerDateFormat" ColumnName="ValueServerDateFormat" />
+                <ScalarProperty Name="ValueNumberFormat" ColumnName="ValueNumberFormat" />
+                <ScalarProperty Name="ValueMaxLength" ColumnName="ValueMaxLength" />
+                <ScalarProperty Name="HeightControl" ColumnName="HeightControl" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SYS_Grid">
+            <EntityTypeMapping TypeName="BiteccoModel.SYS_Grid">
+              <MappingFragment StoreEntitySet="SYS_Grid">
+                <ScalarProperty Name="ID_SYS_Grid" ColumnName="ID_SYS_Grid" />
+                <ScalarProperty Name="ID_Form" ColumnName="ID_Form" />
+                <ScalarProperty Name="NameColumn" ColumnName="NameColumn" />
+                <ScalarProperty Name="MemberColumn" ColumnName="MemberColumn" />
+                <ScalarProperty Name="TypeColumn" ColumnName="TypeColumn" />
+                <ScalarProperty Name="WidthColumn" ColumnName="WidthColumn" />
+                <ScalarProperty Name="AlignHeader" ColumnName="AlignHeader" />
+                <ScalarProperty Name="AlignColumn" ColumnName="AlignColumn" />
+                <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+                <ScalarProperty Name="ApiName" ColumnName="ApiName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SYS_Menu">
+            <EntityTypeMapping TypeName="BiteccoModel.SYS_Menu">
+              <MappingFragment StoreEntitySet="SYS_Menu">
+                <ScalarProperty Name="ID_SYS_Menu" ColumnName="ID_SYS_Menu" />
+                <ScalarProperty Name="ControllerName" ColumnName="ControllerName" />
+                <ScalarProperty Name="ActionMethod" ColumnName="ActionMethod" />
+                <ScalarProperty Name="MenuName" ColumnName="MenuName" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="IsCache" ColumnName="IsCache" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ID_SYS_Menu_Parent" ColumnName="ID_SYS_Menu_Parent" />
+                <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SYS_SubMenu">
+            <EntityTypeMapping TypeName="BiteccoModel.SYS_SubMenu">
+              <MappingFragment StoreEntitySet="SYS_SubMenu">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ID_SYS_Menu" ColumnName="ID_SYS_Menu" />
+                <ScalarProperty Name="ControllerName" ColumnName="ControllerName" />
+                <ScalarProperty Name="ActionMethod" ColumnName="ActionMethod" />
+                <ScalarProperty Name="SubMenuName" ColumnName="SubMenuName" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SYS_Toolbar">
+            <EntityTypeMapping TypeName="BiteccoModel.SYS_Toolbar">
+              <MappingFragment StoreEntitySet="SYS_Toolbar">
+                <ScalarProperty Name="ID_Action" ColumnName="ID_Action" />
+                <ScalarProperty Name="Language" ColumnName="Language" />
+                <ScalarProperty Name="EnableItem" ColumnName="EnableItem" />
+                <ScalarProperty Name="DisableItem" ColumnName="DisableItem" />
+                <ScalarProperty Name="ToolbarName" ColumnName="ToolbarName" />
+                <ScalarProperty Name="ID_SYS_Toolbar" ColumnName="ID_SYS_Toolbar" />
+                <ScalarProperty Name="ToolbarType" ColumnName="ToolbarType" />
+                <ScalarProperty Name="ToolbarText" ColumnName="ToolbarText" />
+                <ScalarProperty Name="ToolbarImage" ColumnName="ToolbarImage" />
+                <ScalarProperty Name="ToolbarDisImage" ColumnName="ToolbarDisImage" />
+                <ScalarProperty Name="ToolbarAction" ColumnName="ToolbarAction" />
+                <ScalarProperty Name="ID_Form" ColumnName="ID_Form" />
+                <ScalarProperty Name="ID_SYS_Toolbar_Parent" ColumnName="ID_SYS_Toolbar_Parent" />
+                <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SYS_Tree">
+            <EntityTypeMapping TypeName="BiteccoModel.SYS_Tree">
+              <MappingFragment StoreEntitySet="SYS_Tree">
+                <ScalarProperty Name="ID_SYS_Tree" ColumnName="ID_SYS_Tree" />
+                <ScalarProperty Name="ID_Form" ColumnName="ID_Form" />
+                <ScalarProperty Name="NameTree" ColumnName="NameTree" />
+                <ScalarProperty Name="TextValue" ColumnName="TextValue" />
+                <ScalarProperty Name="IdValue" ColumnName="IdValue" />
+                <ScalarProperty Name="ChildValue" ColumnName="ChildValue" />
+                <ScalarProperty Name="ApiName" ColumnName="ApiName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="BiteccoModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SYS_Form">
+            <EntityTypeMapping TypeName="BiteccoModel.SYS_Form">
+              <MappingFragment StoreEntitySet="SYS_Form">
+                <ScalarProperty Name="HelpForm" ColumnName="HelpForm" />
+                <ScalarProperty Name="ApiListData" ColumnName="ApiListData" />
+                <ScalarProperty Name="ApiNameToolbar" ColumnName="ApiNameToolbar" />
+                <ScalarProperty Name="ApiData" ColumnName="ApiData" />
+                <ScalarProperty Name="ApiNameControl" ColumnName="ApiNameControl" />
+                <ScalarProperty Name="ApiNameConfig" ColumnName="ApiNameConfig" />
+                <ScalarProperty Name="InputWidth" ColumnName="InputWidth" />
+                <ScalarProperty Name="LabelWidth" ColumnName="LabelWidth" />
+                <ScalarProperty Name="NameForm" ColumnName="NameForm" />
+                <ScalarProperty Name="ID_SYS_Form" ColumnName="ID_SYS_Form" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

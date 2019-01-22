@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<vi>
+  <message>
+    <deleted>Xóa dữ liệu thành công</deleted>
+    <acceptdelete>Bạn có chắc chắn muốn xóa dữ liệu đã chọn không?</acceptdelete>
+    <delete>Bạn chưa chọn dữ liệu để xóa</delete>
+    <updated>Sửa dữ liệu thành công</updated>
+    <acceptupdate>Bạn có chắc chắn muốn lưu dữ liệu đã sửa không?</acceptupdate>
+    <checkupdate>Thông tin nhập chưa chính xác. Hãy kiểm tra lại!</checkupdate>
+    <detail>Bạn chưa chọn dữ liệu để xem chi tiết</detail>
+    <added>Thêm mới dữ liệu thành công</added>
+    <checkadd>Thông tin nhập chưa chính xác. Hãy kiểm tra lại!</checkadd>
+  </message>
+  <title>
+    <delete>Xóa dữ liệu</delete>
+    <update>Sửa dữ liệu</update>
+    <add>Thêm mới dữ liệu</add>
+    <detail>Xem chi tiết dữ liệu</detail>
+    <help>Hướng dẫn sử dụng chức năng</help>
+  </title>
+</vi>
